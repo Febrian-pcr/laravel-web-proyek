@@ -1,74 +1,24 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MatakuliahController;
-
-
-
-use App\Http\Controllers\QuestionController;
-use Illuminate\View\View;
-
-
-// pertemuan 9
-use App\Http\Controllers\UserController;
-Route::resource('user',UserController::class);
-
-//pertemuan 7
-use App\Http\Controllers\PelangganController;
-Route::resource('pelanggan', PelangganController::class);
-
-//pertemuan 6
-Route::get('dashboard', [DashboardController::class,'index'])->name('dashboard');
-
-Route::get('/home-question-respon', function () {
-    return view('home-question-respon');
-})->name('home-question-respon');
-
-
-
-Route::post('question/store', [QuestionController::class, 'store'])
-		->name('question.store');
-
-Route::get('/home',[HomeController::class,'index']);
-
-Route::get('/matakuliah', [MatakuliahController::class, 'index']);
-Route::get('/matakuliah/create', [MatakuliahController::class, 'create']);
-Route::post('/matakuliah', [MatakuliahController::class, 'store']);
-Route::get('/matakuliah/show/{kode?}', [MatakuliahController::class, 'show']);
-Route::get('/matakuliah/{kode}/edit', [MatakuliahController::class, 'edit']);
-Route::put('/matakuliah/{kode}', [MatakuliahController::class, 'update']);
-Route::delete('/matakuliah/{kode}', [MatakuliahController::class, 'destroy']);
-Route::get('/pcr', function () {
-    return 'Selamat Datang di Website Kampus PCR!';
-});
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome'); // Halaman landing page / katalog kamar nanti
 });
 
-Route::get('/mahasiswa', function () {
-    return 'Halo Mahasiswa';
+// Route khusus untuk Admin
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return 'Selamat datang di Dashboard Admin'; // Nanti diarahkan ke view admin
+    })->name('admin.dashboard');
 });
 
-Route::get('/nama/{param1}', function ($param1) {
-    return 'Nama saya: '.$param1;
+// Route khusus untuk Pelanggan
+Route::middleware(['auth', 'role:pelanggan'])->group(function () {
+    Route::get('/pelanggan/dashboard', function () {
+        return 'Selamat datang di Dashboard Pelanggan'; // Nanti diarahkan ke view pelanggan
+    })->name('pelanggan.dashboard');
 });
 
-Route::get('/nim/{param1?', function ($param1 = ' ') {
-    return 'NIM saya: '.$param1;
-});
-
-Route::get('/mahasiswa', function () {
-    return 'Halo Mahasiswa';
-})->name('mahasiswa.show');
-
-Route :: get('/mahasiswa/{param1}', [MahasiswaController::class, 'show']);
-
-Route::get('/about', function () {
-    return view('halaman-about');
-});
-
-
+require __DIR__ . '/auth.php';
