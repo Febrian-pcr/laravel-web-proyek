@@ -21,4 +21,12 @@ Route::middleware(['auth', 'role:pelanggan'])->group(function () {
     })->name('pelanggan.dashboard');
 });
 
+Route::get('/preview/admin', function () {
+    return view('admin.dashboard');
+});
+
+Route::get('/preview/pelanggan', function () {
+    return view('pelanggan.dashboard');
+});
+
 require __DIR__ . '/auth.php';
