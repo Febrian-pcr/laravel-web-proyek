@@ -9,6 +9,8 @@ class Kamar extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     protected $fillable = [
         'no_kamar', 'tipe_kamar', 'harga_per_malam', 'status_kamar'
     ];

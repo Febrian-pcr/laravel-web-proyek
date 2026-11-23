@@ -95,7 +95,7 @@
                             <span class="text-[#148F96] font-bold text-base">Rp 350.000</span>
                             <span class="text-xs text-slate-400">/ malam</span>
                         </div>
-                        <a href="#" class="block text-center bg-[#148F96] text-white py-2 rounded-lg text-xs font-semibold hover:bg-[#0F767C] transition">Pesan Sekarang</a>
+                        <a href="{{ route('booking.form', 'deluxe') }}" class="block text-center bg-[#148F96] text-white py-2 rounded-lg text-xs font-semibold hover:bg-[#0F767C] transition">Pesan Sekarang</a>
                     </div>
                 </div>
             </div>
@@ -111,7 +111,7 @@
                             <span class="text-[#148F96] font-bold text-base">Rp 249.000</span>
                             <span class="text-xs text-slate-400">/ malam</span>
                         </div>
-                        <a href="#" class="block text-center bg-[#148F96] text-white py-2 rounded-lg text-xs font-semibold hover:bg-[#0F767C] transition">Pesan Sekarang</a>
+                        <a href="{{ route('booking.form', 'standard') }}" class="block text-center bg-[#148F96] text-white py-2 rounded-lg text-xs font-semibold hover:bg-[#0F767C] transition">Pesan Sekarang</a>
                     </div>
                 </div>
             </div>
@@ -127,7 +127,7 @@
                             <span class="text-[#148F96] font-bold text-base">Rp 500.000</span>
                             <span class="text-xs text-slate-400">/ malam</span>
                         </div>
-                        <a href="#" class="block text-center bg-[#148F96] text-white py-2 rounded-lg text-xs font-semibold hover:bg-[#0F767C] transition">Pesan Sekarang</a>
+                        <a href="{{ route('booking.form', 'vip') }}" class="block text-center bg-[#148F96] text-white py-2 rounded-lg text-xs font-semibold hover:bg-[#0F767C] transition">Pesan Sekarang</a>
                     </div>
                 </div>
             </div>

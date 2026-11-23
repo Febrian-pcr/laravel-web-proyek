@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Reservasi extends Model
 {
     use HasFactory;
-
+    protected $guarded = [];
     protected $fillable = [
         'user_id', 'kamar_id', 'admin_id', 'tgl_checkin', 'tgl_checkout', 
         'fasilitas_tambahan', 'total_bayar', 'status_reservasi'
