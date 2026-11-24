@@ -10,16 +10,17 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up()
-    {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('username')->unique();
-            $table->string('password');
-            $table->string('nama_lengkap');
-            $table->string('no_hp')->nullable();
-            $table->enum('role', ['admin', 'pelanggan'])->default('pelanggan');
-            $table->rememberToken();
-            $table->timestamps();
-        });
-    }
+{
+    Schema::create('users', function (Blueprint $table) {
+        $table->id();
+        $table->string('username')->unique()->nullable();
+        $table->string('email')->unique();
+        $table->string('password');
+        $table->string('nama_lengkap');
+        $table->string('no_hp')->nullable();
+        $table->enum('role', ['admin', 'pelanggan'])->default('pelanggan');
+        $table->rememberToken();
+        $table->timestamps();
+    });
+}
 };

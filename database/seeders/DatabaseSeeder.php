@@ -3,23 +3,37 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // 1. Akun Admin
+        User::updateOrCreate(
+            ['email' => 'admin@wismakita.com'],
+            [
+                'username' => 'admin',
+                'password' => bcrypt('password123'),
+                'nama_lengkap' => 'Admin Febrian',
+                'no_hp' => '081234567890',
+                'role' => 'admin',
+            ]
+        );
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // 2. Akun Pelanggan (User)
+        User::updateOrCreate(
+            ['email' => 'pelanggan@wismakita.com'],
+            [
+                'username' => 'pelanggan',
+                'password' => bcrypt('password123'),
+                'nama_lengkap' => 'Budi Santoso',
+                'no_hp' => '089876543210',
+                'role' => 'pelanggan',
+            ]
+        );
+
+        // 3. Isi data kamar awal (hapus tanda // di bawah jika ingin sekalian mengisi data kamar)
+        $this->call(KamarSeeder::class);
     }
 }

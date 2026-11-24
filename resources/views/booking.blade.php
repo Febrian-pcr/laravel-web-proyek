@@ -33,6 +33,22 @@
             <h2 class="text-2xl font-bold text-slate-800">Selesaikan Pemesanan Anda</h2>
             <p class="text-sm text-slate-500 mt-1">Silakan lengkapi detail tanggal dan pembayaran untuk kamar <span class="font-bold text-[#148F96]">{{ $tipe_kamar }}</span>.</p>
         </div>
+        <!-- Tambahkan ini tepat di atas <form> agar pesan error terlihat -->
+@if ($errors->any())
+    <div class="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg mb-6 text-sm">
+        <ul class="list-disc list-inside">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+@if (session('error'))
+    <div class="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg mb-6 text-sm">
+        {{ session('error') }}
+    </div>
+@endif
 
         <form action="{{ route('booking.store') }}" method="POST" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 md:p-8">
             @csrf
@@ -67,7 +83,7 @@
                 <h4 class="text-sm font-semibold text-slate-700 mb-3 border-b border-gray-200 pb-2">Informasi Pemesan</h4>
                 <div class="flex justify-between text-sm mb-2">
                     <span class="text-slate-500">Nama Lengkap</span>
-                    <span class="font-medium text-slate-800">{{ Auth::user()->name }}</span>
+                    <span class="font-medium text-slate-800">{{ Auth::user()->nama_lengkap }}</span>
                 </div>
                 <div class="flex justify-between text-sm mb-2">
                     <span class="text-slate-500">Email Akses</span>
@@ -80,7 +96,7 @@
             </div>
 
             <!-- Tombol Submit -->
-            <button type="summit" class="w-full bg-[#148F96] text-white py-3.5 rounded-lg font-bold text-sm hover:bg-[#0F767C] transition shadow-md">Konfirmasi & Pesan Kamar</button>
+            <button type="submit" class="w-full bg-[#148F96] text-white py-3.5 rounded-lg font-bold text-sm hover:bg-[#0F767C] transition shadow-md">Konfirmasi & Pesan Kamar</button>
         </form>
     </main>
 
